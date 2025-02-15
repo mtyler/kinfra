@@ -5,7 +5,7 @@ CERT_MGR_ENV="stage"
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 kubectl cluster-info
-for namespace in argocd cert-manager cert-manager-test ingress-nginx; do
+for namespace in argocd bootstrap cert-manager cert-manager-test ingress-nginx; do
     if kubectl get namespace $namespace > /dev/null 2>&1; then
         read -p "Namespace '$namespace' exists. Do you want to delete it? (y/n): " confirm
         if [[ $confirm == "y" ]]; then
@@ -82,3 +82,6 @@ kubectl get all -n ingress-nginx
 if [[ $CERT_MGR_ENV == "stage" ]]; then
     kubectl apply -f $SCRIPT_DIR/stageClusterIssuer.yaml
 fi
+
+kubectl apply -f $SCRIPT_DIR/bootstrap.yaml
+kubectl apply -f $SCRIPT_DIR/argocdIngress.yaml

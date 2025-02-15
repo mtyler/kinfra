@@ -4,9 +4,10 @@ basic kubernetes infrastructure bootstraping
 
 ## Dependencies
 
-kubernetes cluster 
-kubectl
-helm
+kubernetes cluster  (kubernetes cluster that responds to 'kubectl cluster-info')
+kubectl             (brew install kubectl)
+helm                (brew install helm)
+argocd              (brew install argocd)
 
 ## Networking Dependencies
 
@@ -26,3 +27,6 @@ DNS lookup: nslookup wiredtentacle.com
 MAC address: networksetup -listallhardwareports
 IP address: ipconfig
 
+## Usage
+
+argocd admin initial-password -n argocd
