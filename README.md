@@ -29,4 +29,12 @@ IP address: ipconfig
 
 ## Usage
 
+These commands should be run from the admin workstation/same cli where kubectl is used.
+Port-Forward
+kubectl -n argocd port-forward --address 0.0.0.0 svc/argocd-server 8080:443
+
+Get Admin credentials
 argocd admin initial-password -n argocd
+
+Attach instance to a cluster
+argocd cluster add kubernetes-admin@kubernetes

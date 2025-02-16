@@ -18,8 +18,8 @@ for namespace in argocd bootstrap cert-manager cert-manager-test ingress-nginx; 
 done
 ## Install ArgoCD
 kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl apply -n argocd -f ./bootstrap/argocd/install.yaml
+#kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 ## Install Cert-Manager
@@ -76,6 +76,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx \
   --create-namespace \
   --set controller.service.type=LoadBalancer \
+  --
 
 kubectl get all -n ingress-nginx
 
@@ -84,4 +85,5 @@ if [[ $CERT_MGR_ENV == "stage" ]]; then
 fi
 
 kubectl apply -f $SCRIPT_DIR/bootstrap.yaml
-kubectl apply -f $SCRIPT_DIR/argocdIngress.yaml
+##one of three ways to access argocd
+##kubectl apply -f $SCRIPT_DIR/argocdIngress.yaml
