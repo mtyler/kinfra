@@ -17,7 +17,7 @@ spec:
     path: metrics-server
     chart: metrics-server
     repoURL: https://kubernetes-sigs.github.io/metrics-server
-    targetRevision: v1.17.1
+    targetRevision: v3.12.2
     helm:
       releaseName: metrics-server
       parameters:
