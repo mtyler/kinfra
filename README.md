@@ -29,11 +29,14 @@ IP address: ipconfig
 
 ## Usage
 
-These commands should be run from the admin workstation/same cli where kubectl is used.
-Port-Forward
-kubectl -n argocd port-forward --address 0.0.0.0 svc/argocd-server 8080:443
+These commands should be run from the root of this repo, from the admin workstation/same cli where kubectl is used.
+1. Execute: ./bootstrap/bootstrap.sh 
 
-Get Admin credentials
-kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
+2. Port-Forward: kubectl -n argocd port-forward --address 0.0.0.0 svc/argocd-server 8080:443
 
-argo login --core
+3. Login user:admin: kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
+
+4. Create app-of-apps. 
+- use path app-of-apps/apps
+- exclude bootstrap
+
