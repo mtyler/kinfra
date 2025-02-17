@@ -1,0 +1,32 @@
+# Install cert-manager
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: cert-manager
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  project: default
+  source:
+    path: cert-manager
+    chart: cert-manager
+    repoURL: https://charts.jetstack.io"
+    targetRevision: "v1.17.0"
+    helm:
+      releaseName: cert-manager
+      parameters:
+        - name: "crds.enabled"
+          value: "true"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
