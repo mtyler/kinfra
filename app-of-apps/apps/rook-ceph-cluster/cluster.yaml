@@ -2,7 +2,7 @@ apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
   name: rook-ceph
-  namespace: rook-ceph-cluster
+  namespace: rook-ceph
 spec:
   dataDirHostPath: /var/lib/rook
   cephVersion:
@@ -70,7 +70,7 @@ apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
   name: builtin-mgr
-  namespace: rook-ceph-cluster
+  namespace: rook-ceph
 spec:
   name: .mgr
   replicated:
@@ -81,7 +81,7 @@ apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
   name: replicapool
-  namespace: rook-ceph-cluster
+  namespace: rook-ceph
 spec:
   failureDomain: osd
   replicated:
@@ -92,7 +92,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rook-ceph-tools-operator-image
-  namespace: rook-ceph-cluster
+  namespace: rook-ceph
   labels:
     app: rook-ceph-tools-operator-image
   annotations:
