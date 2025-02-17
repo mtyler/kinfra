@@ -15,6 +15,7 @@ spec:
   project: default
   source:
     path: app-of-apps/apps/rook-ceph-cluster
+    repoURL: 'https://github.com/mtyler/kinfra'
     targetRevision: HEAD
   syncPolicy:
     automated:
