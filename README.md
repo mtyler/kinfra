@@ -34,7 +34,6 @@ Port-Forward
 kubectl -n argocd port-forward --address 0.0.0.0 svc/argocd-server 8080:443
 
 Get Admin credentials
-argocd admin initial-password -n argocd
+kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
 
-Attach instance to a cluster
-argocd cluster add kubernetes-admin@kubernetes
+argo login --core
