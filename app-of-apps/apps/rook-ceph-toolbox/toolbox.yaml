@@ -121,14 +121,14 @@ spec:
           items:
           - key: ceph-secret
             path: secret.keyring
-          defaultMode: '0644'
+          defaultMode: 0644
       - name: mon-endpoint-volume
         configMap:
           name: rook-ceph-mon-endpoints
           items:
           - key: data
             path: mon-endpoints
-          defaultMode: '0644'
+          defaultMode: 0644
       - name: ceph-config
         emptyDir: {}
       restartPolicy: Always
