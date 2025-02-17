@@ -15,7 +15,7 @@ spec:
     path: rook-ceph
     chart: rook-ceph
     repoURL: https://charts.rook.io/release
-    targetRevision: 1.16
+    targetRevision: 'v1.16'
     helm:
       releaseName: rook-ceph
       parameters:
@@ -35,3 +35,10 @@ spec:
         value: "true"
       - name: "monitoring.enabled"
         value: "true"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
