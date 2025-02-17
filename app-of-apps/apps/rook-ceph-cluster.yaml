@@ -11,7 +11,7 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: rook-ceph-cluster
+    namespace: rook-ceph
   project: default
   source:
     path: app-of-apps/apps/rook-ceph-cluster
