@@ -21,6 +21,7 @@ done
 kubectl create namespace argocd
 kubectl apply -n argocd -f ./bootstrap/argocd/install.yaml
 
+python3 ./monkeypatch/kubeProxy-metricsBindAddress.py
 echo "Waiting for ArgoCD to be ready..."
 sleep 10
 

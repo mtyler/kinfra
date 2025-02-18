@@ -7,7 +7,8 @@ basic kubernetes infrastructure bootstraping
 kubernetes cluster  (kubernetes cluster that responds to 'kubectl cluster-info')
 kubectl             (brew install kubectl)
 helm                (brew install helm)
-argocd              (brew install argocd)
+python3             (brew install python3)
+~argocd              (brew install argocd)~
 
 ## Networking Dependencies
 
