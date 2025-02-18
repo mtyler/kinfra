@@ -16,7 +16,7 @@ spec:
     path: helm-charts/kube-prometheus-stack
     chart: kube-prometheus-stack
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: "v0.80.0"
+    targetRevision: "v69.3.1"
     helm:
       releaseName: prometheus
       parameters:
