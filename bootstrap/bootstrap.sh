@@ -21,6 +21,8 @@ done
 kubectl create namespace argocd
 kubectl apply -n argocd -f ./bootstrap/argocd/install.yaml
 
+echo "ArgoCD credentials:"
+kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
 #kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #kubectl port-forward svc/argocd-server -n argocd 8080:443
 

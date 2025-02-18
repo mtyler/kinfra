@@ -5,11 +5,12 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    name: in-cluster
+    #name: in-cluster
+    server: https://kubernetes.default.svc
     namespace: argocd
   source:
     path: app-of-apps/apps
-    repoURL: 'https://github.com/mtyler/kinfra'
+    repoURL: "https://github.com/mtyler/kinfra"
     targetRevision: HEAD
   project: default
   syncPolicy:
@@ -17,14 +18,14 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - RespectIgnoreDifferences=true
+      - RespectIgnoreDifferences=true
   ignoreDifferences:
-  - group: "*"
-    kind: "Application"
-    namespace: "*"
-    jsonPointers:
-    # Allow manually disabling auto sync for apps, useful for debugging.
-    - /spec/syncPolicy/automated
-    # These are automatically updated on a regular basis. Not ignoring last applied configuration since it's used for computing diffs after normalization.
-    - /metadata/annotations/argocd.argoproj.io~1refresh
-    - /operation
+    - group: "*"
+      kind: "Application"
+      namespace: "*"
+      jsonPointers:
+        # Allow manually disabling auto sync for apps, useful for debugging.
+        - /spec/syncPolicy/automated
+        # These are automatically updated on a regular basis. Not ignoring last applied configuration since it's used for computing diffs after normalization.
+        - /metadata/annotations/argocd.argoproj.io~1refresh
+        - /operation
