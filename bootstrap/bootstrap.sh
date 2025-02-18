@@ -21,10 +21,12 @@ done
 kubectl create namespace argocd
 kubectl apply -n argocd -f ./bootstrap/argocd/install.yaml
 
-python3 ./monkeypatch/kubeProxy-metricsBindAddress.py
-echo "Waiting for ArgoCD to be ready..."
-sleep 10
+python3 ./bootstrap/monkeypatch/kubeProxy-metricsBindAddress.py
 
+until kubectl -n argocd get secrets argocd-initial-admin-secret > /dev/null 2>&1; do
+    echo "Waiting for argocd-initial-admin-secret to be created..."
+    sleep 5
+done
 echo "\nArgoCD credentials:"
 kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
 #kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
