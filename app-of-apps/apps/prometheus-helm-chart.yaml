@@ -23,7 +23,7 @@ spec:
         - name: "grafana.persistence.enabled"
           value: "true"
         - name: "grafana.persistence.storageClassName"
-          value:
+          value: "rook-ceph-block"
         - name: "alertmanager.config.receivers[0].name"
           value: "slack"
         - name: "alertmanager.config.receivers[0].slack_configs[0].channel"
