@@ -1,0 +1,69 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  name: monitoring
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  project: default
+  source:
+    path: helm-charts/kube-prometheus-stack
+    chart: kube-prometheus-stack
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: "v0.80.0"
+    helm:
+      releaseName: prometheus
+      parameters:
+        - name: "grafana.persistence.enabled"
+          value: "true"
+        - name: "grafana.persistence.storageClassName"
+          value:
+        - name: "alertmanager.config.receivers[0].name"
+          value: "slack"
+        - name: "alertmanager.config.receivers[0].slack_configs[0].channel"
+          value: var.slack_channel
+        - name: "alertmanager.config.receivers[0].slack_configs[0].api_url"
+          value: var.slack_api_url
+        - name: "alertmanager.config.receivers[0].slack_configs[0].send_resolved"
+          value: "true"
+        - name: "alertmanager.config.route.receiver"
+          value: "slack"
+        - name: "alertmanager.config.route.routes[0].receiver"
+          value: "slack"
+        - name: "alertmanager.config.route.routes[0].matchers[0]"
+          value: "alertname = Watchdog"
+        - name: "kubeApiServer.serviceMonitor.enabled"
+          value: "true"
+        - name: "kubeEtcd.enabled"
+          value: "true"
+        - name: "kubeEtcd.service.enabled"
+          value: "true"
+        - name: "kubeEtcd.service.port"
+          value: "2381"
+        - name: "kubeEtcd.service.targetPort"
+          value: "2381"
+        - name: "prometheusOperator.tls.internalPort"
+          value: "443"
+        - name: "prometheus.prometheusSpec.serviceMonitorNamespaceSelectorNilUsesHelmValues"
+          value: "false"
+        - name: "prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues"
+          value: "false"
+        - name: "prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues"
+          value: "false"
+        - name: "prometheus.prometheusSpec.ruleSelectorNilUsesHelmValues"
+          value: "false"
+        - name: "prometheus.prometheusSpec.scrapeConfigNamespaceSelectorNilUsesHelmValues"
+          value: "false"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
