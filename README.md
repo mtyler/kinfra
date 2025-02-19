@@ -89,6 +89,8 @@ rotateCertificates: true
 
 rotateCertificates enables client certificate rotation. The Kubelet will request a new certificate from the certificates.k8s.io API. This requires an approver to approve the certificate signing requests. Default: false
 
+****Added self-signed CA to cluster
+
 #### Prometheus Node scraping node-exporter or state-metrics
 - curl the endpoint: curl 10.101.88.172:9100/metrics
 success
