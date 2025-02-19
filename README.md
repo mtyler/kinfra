@@ -42,9 +42,9 @@ These commands should be run from the root of this repo, from the admin workstat
 - exclude bootstrap
 
 ### tasks
-- is cert-manager still failing liveness probe?
+#### is cert-manager still failing liveness probe?
 
-- kublet client certificate failing.
+#### kublet client certificate failing.
 err="part of the existing bootstrap client certificate in /etc/kubernetes/kubelet.conf is expired: 2026-02-18 22:10:15 +0000 UTC" 
 err="failed to run Kubelet: unable to load bootstrap kubeconfig: stat /etc/kubernetes/bootstrap-kubelet.conf: no such file or directory"
 Flag --container-runtime-endpoint has been deprecated, This parameter should be set via the config file specified by the Kubelet's --c>
@@ -83,3 +83,14 @@ lrwxrwxrwx 1 root root   59 Feb 18  2025 kubelet-client-current.pem -> /var/lib/
 -rw------- 1 root root 1675 Feb 18  2025 kubelet.key
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert
+
+#### Node Exporter not exporting nodes
+- curl the endpoint: curl 10.101.88.172:9100/metrics
+success
+- why is prometheus not getting data to grafana
+
+- prometheus shows node exporter and state metrics offline
+  "no active targets in this scrape pool"
+  where is scrape pool defined?
+
+  There is a selector-label mismatch between serviceMonitor and node-exporter service
