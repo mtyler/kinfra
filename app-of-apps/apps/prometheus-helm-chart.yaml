@@ -24,7 +24,7 @@ spec:
           value: "true"
         - name: "grafana.persistence.storageClassName"
           value: "rook-ceph-block"
-        #### TODO manage secrets
+        #### TODO removed until we can pass slack creds securely
         ##        - name: "alertmanager.config.receivers[0].name"
         ##          value: "slack"
         ##        - name: "alertmanager.config.receivers[0].slack_configs[0].channel"
@@ -49,22 +49,24 @@ spec:
           value: "2381"
         - name: "kubeEtcd.service.targetPort"
           value: "2381"
-        - name: "prometheus-node-exporter.prometheus.monitor.enabled"
-          value: "true"
-        - name: "prometheus-node-exporter.prometheus.jobLabel"
-          value: "node-exporter"
+        ## never used
+        ##        - name: "prometheus-node-exporter.prometheus.monitor.enabled"
+        ##          value: "true"
+        ##        - name: "prometheus-node-exporter.prometheus.monitor.selectorOverride"
+        ##          value: "node-exporter"
         - name: "prometheusOperator.tls.internalPort"
           value: "443"
-  #        - name: "prometheus.prometheusSpec.serviceMonitorNamespaceSelectorNilUsesHelmValues"
-  #          value: "false"
-  #        - name: "prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues"
-  #          value: "false"
-  #        - name: "prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues"
-  #          value: "false"
-  #        - name: "prometheus.prometheusSpec.ruleSelectorNilUsesHelmValues"
-  #          value: "false"
-  #        - name: "prometheus.prometheusSpec.scrapeConfigNamespaceSelectorNilUsesHelmValues"
-  #          value: "false"
+        - name: "prometheus.prometheusSpec.serviceMonitorNamespaceSelectorNilUsesHelmValues"
+          value: "false"
+        - name: "prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues"
+          value: "false"
+  ## rm for argocd
+  ##        - name: "prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues"
+  ##          value: "false"
+  ##        - name: "prometheus.prometheusSpec.ruleSelectorNilUsesHelmValues"
+  ##          value: "false"
+  ##        - name: "prometheus.prometheusSpec.scrapeConfigNamespaceSelectorNilUsesHelmValues"
+  ##          value: "false"
   syncPolicy:
     automated:
       prune: true

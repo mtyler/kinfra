@@ -37,14 +37,11 @@ These commands should be run from the root of this repo, from the admin workstat
 
 3. ArgoCD Login user:admin: kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
 
-4. Create app-of-apps. 
-- use path app-of-apps/apps
-- exclude bootstrap
 
 ### tasks
 #### is cert-manager still failing liveness probe?
 
-#### kublet client certificate failing.
+#### kublet client certificate rotation failing.
 err="part of the existing bootstrap client certificate in /etc/kubernetes/kubelet.conf is expired: 2026-02-18 22:10:15 +0000 UTC" 
 err="failed to run Kubelet: unable to load bootstrap kubeconfig: stat /etc/kubernetes/bootstrap-kubelet.conf: no such file or directory"
 Flag --container-runtime-endpoint has been deprecated, This parameter should be set via the config file specified by the Kubelet's --c>
@@ -54,7 +51,7 @@ mtyler@lima-n3:~$ sudo cat /etc/kubernetes/kubelet.conf
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJVFk4T3F4bnBqa293RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRBeU1UZ3lNakExTWpWYUZ3MHpOVEF5TVRZeU1qRXdNalZhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM4RjFTRVBWaXcvTGExVDB2S2FDdDNibFFQOEcybzN1bVFLYUcvYzhtMkpTRCtyZmtzSkxHaEN3Y0IKZDFJY2ZoejF4SUNlYmdPMXNQNkIrdjZyV3dtbVprUEJZcXZ1MEs0T0o4Y3RoTVJSQ1RtVHQyYm10S3FYVmVxdgpMVG5WbzFhaSt0OFhsL3J5MnpUL2xmUFRnMElnalpTdVNSSVhEdDFlUFJZNVZSMm1RYWVLRUxJbUppT1ZHK1V3CmFWS2c1U0tIb0pSekN5OUEvVXBQNjhxTUp4aVZHMVBPaWFCYmlDWXFObzFvSlMrWFZjSnVkdndMV3dMUWJzSEEKMGh3cTFrYUNSS1BtMU5nVzNUUXlnNHFIK3l3Z1pIcXBHNnhVaXpKSTNhaGV2MzdYR2VoL3NiWWtzblhuU3I4ZQpHYnZtWndIdnY1Q1RwUm9kQ0QwRnhuRjZMRW5kQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJRK0RPSEZ2WjZUWkFGT1psbk9jZVN2WDFpYmhqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQlVkZDh0NzhLLwpiMXIwVXhVVGhSTGRIQ3lQaFdEaDc4eHAwbHNLTFJsL3N0K3pFakJ5amdXQnRhb0x2TmVmdjFtakVRRHd0RU05ClU0YU9TUDlmelpVQnYrYVkrcTc5Q1c0a2N6R3F3LzdlcXJFaWYzV1JKbXJEQXhHUVA4cFRNWHVESGlkRE5lWVUKeHUvalZKTDRnTkpyNFd4U29zL09OM2M1MDBoOWNaZXVjaGVhMDF3a0ZmYm5LMjdWd29iV1UyUWx2M3Q1SUt1MQprY2tIbWNsTVp3K3dIRlBBNS95RERSK0ZjdVNTeis4eHlmbjVqbUFxclVmdjAyd0VGSElaTEZYS3pFa3RIT29LCkd2QW5CbjBQay9YQzF4ank2eHdrQU5lT2ZTcnVYTTNDK2d1Nzk4V05SR3lzc05UUy8wWnBrVDh2MlU2THNRVnUKQktWNTlyU3Qrb21zCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    certificate-authority-data: R3lzc05UUy8wWnBrVDh2MlU2THNRVnUKQktWNTlyU3Qrb21zCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
     server: https://192.168.105.7:6443
   name: default-cluster
 contexts:
@@ -84,7 +81,7 @@ lrwxrwxrwx 1 root root   59 Feb 18  2025 kubelet-client-current.pem -> /var/lib/
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert
 
-#### Node Exporter not exporting nodes
+#### Prometheus Node scraping node-exporter or state-metrics
 - curl the endpoint: curl 10.101.88.172:9100/metrics
 success
 - why is prometheus not getting data to grafana
