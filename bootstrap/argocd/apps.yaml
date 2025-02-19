@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kinfra
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    path: app-of-apps/apps
+    repoURL: https://github.com/mtyler/kinfra.git
+    targetRevision: HEAD
+    directory:
+      recurse: false
+      exclude: bootstrap
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

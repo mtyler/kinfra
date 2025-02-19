@@ -81,6 +81,10 @@ lrwxrwxrwx 1 root root   59 Feb 18  2025 kubelet-client-current.pem -> /var/lib/
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert
 
+kubectl get csr -n kube-system
+openssl x509 -in /var/lib/kubelet/pki/kubelet-client-current.pem -noout -dates
+/etc/kubernetes/kubelet < does --rotate-server-certificates flag is set to true
+
 #### Prometheus Node scraping node-exporter or state-metrics
 - curl the endpoint: curl 10.101.88.172:9100/metrics
 success
