@@ -14,7 +14,7 @@ spec:
     namespace: monitoring
   project: default
   source:
-    path: app-of-apps/apps/monitoring-hack
+    path: app-of-apps/apps/monitoring
     repoURL: "https://github.com/mtyler/kinfra"
     targetRevision: HEAD
   syncPolicy:

@@ -71,6 +71,16 @@ Apr 12 16:29:54 lima-n3 chronyd[39331]: System clock wrong by -3002385021.274820
 
 !! recovered node by draining and restarting !!
 
+possible cause is chronyd being blocked. Use show sockets to check 
+limactl shell cp1 ss -ltpn
+l shell cp1 chronyc sources
+l shell cp1 chronyc sourcestats
+chrony config: /etc/chrony/chrony.conf
+l shell cp1 chronyc -n tracking
+https://github.com/SuperQ/chrony/blob/master/doc/faq.adoc#34-is-chronyd-allowed-to-step-the-system-clock
+
+one can consider using the nocerttimecheck option which allows the user to set the number of times that the time can be synced without checking validation and expiration.
+
 #### Prometheus Node scraping node-exporter or state-metrics
 - curl the endpoint: curl 10.101.88.172:9100/metrics
 success

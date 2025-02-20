@@ -4,11 +4,11 @@ metadata:
   labels:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/instance: monitoring
-    app.kubernetes.io/name: kube-state-metrics2
+    app.kubernetes.io/name: prometheus-kube-state-metrics-hack
     app.kubernetes.io/part-of: kube-state-metrics
     jobLabel: node-exporter
     release: prometheus
-  name: prometheus-kube-state-metrics2
+  name: prometheus-kube-state-metrics-hack
   namespace: monitoring
 spec:
   attachMetadata:
