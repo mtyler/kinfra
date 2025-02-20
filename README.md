@@ -48,36 +48,8 @@ Flag --container-runtime-endpoint has been deprecated, This parameter should be 
 Apr 11 21:01:46 lima-n3 kubelet[89874]: Flag --pod-infra-container-image has been deprecated, will be removed in 1.35.
 
 mtyler@lima-n3:~$ sudo cat /etc/kubernetes/kubelet.conf
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: R3lzc05UUy8wWnBrVDh2MlU2THNRVnUKQktWNTlyU3Qrb21zCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
-    server: https://192.168.105.7:6443
-  name: default-cluster
-contexts:
-- context:
-    cluster: default-cluster
-    namespace: default
-    user: default-auth
-  name: default-context
-current-context: default-context
-kind: Config
-preferences: {}
-users:
-- name: default-auth
-  user:
-    client-certificate: /var/lib/kubelet/pki/kubelet-client-current.pem
-    client-key: /var/lib/kubelet/pki/kubelet-client-current.pem
-
 
 mtyler@lima-n3:~$ sudo ls -la /var/lib/kubelet/pki/
-total 20
-drwxr-xr-x 2 root root 4096 Feb 18  2025 .
-drwxrwxr-x 9 root root 4096 Feb 18  2025 ..
--rw------- 1 root root 1110 Feb 18  2025 kubelet-client-2025-02-18-17-15-15.pem
-lrwxrwxrwx 1 root root   59 Feb 18  2025 kubelet-client-current.pem -> /var/lib/kubelet/pki/kubelet-client-2025-02-18-17-15-15.pem
--rw-r--r-- 1 root root 2262 Feb 18  2025 kubelet.crt
--rw------- 1 root root 1675 Feb 18  2025 kubelet.key
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert
 
