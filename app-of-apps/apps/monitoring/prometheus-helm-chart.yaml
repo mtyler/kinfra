@@ -3,7 +3,7 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
-  name: monitoring
+  name: prometheus-helm-chart
   namespace: monitoring
   finalizers:
     - resources-finalizer.argocd.argoproj.io
