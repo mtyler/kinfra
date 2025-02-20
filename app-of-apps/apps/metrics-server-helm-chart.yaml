@@ -4,7 +4,7 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
-  name: metrics-server
+  name: metrics-server-helm-chart
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io

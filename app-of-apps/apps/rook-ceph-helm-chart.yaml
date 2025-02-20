@@ -4,10 +4,10 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-  name: rook-ceph-operator
+  name: rook-ceph-operator-helm-chart
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -17,30 +17,30 @@ spec:
     path: rook-ceph
     chart: rook-ceph
     repoURL: https://charts.rook.io/release
-    targetRevision: 'v1.16'
+    targetRevision: "v1.16"
     helm:
       releaseName: rook-ceph
       parameters:
-      - name: "csi.enableCSIHostNetwork"
-        value: "true"
-      - name: "csi.enableCephfsSnapshotter"
-        value: "false"
-      - name: "csi.enableNFSSnapshotter"
-        value: "false"
-      - name: "csi.enableRBDSnapshotter"
-        value: "false"
-      - name: "csi.provisionerReplicas"
-        value: "1"
-      - name: "csi.seviceMonitor.enabled"
-        value: "true"
-      - name: "enableDiscoveryDaemon"
-        value: "true"
-      - name: "monitoring.enabled"
-        value: "true"
+        - name: "csi.enableCSIHostNetwork"
+          value: "true"
+        - name: "csi.enableCephfsSnapshotter"
+          value: "false"
+        - name: "csi.enableNFSSnapshotter"
+          value: "false"
+        - name: "csi.enableRBDSnapshotter"
+          value: "false"
+        - name: "csi.provisionerReplicas"
+          value: "1"
+        - name: "csi.seviceMonitor.enabled"
+          value: "true"
+        - name: "enableDiscoveryDaemon"
+          value: "true"
+        - name: "monitoring.enabled"
+          value: "true"
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
+      - CreateNamespace=true
+      - ServerSideApply=true

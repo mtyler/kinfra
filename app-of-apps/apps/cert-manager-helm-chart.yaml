@@ -4,7 +4,7 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-  name: cert-manager
+  name: cert-manager-helm-chart
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
