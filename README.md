@@ -91,6 +91,14 @@ rotateCertificates enables client certificate rotation. The Kubelet will request
 
 ****Added self-signed CA to cluster
 
+System clock is out of synch
+Feb 19 18:16:28 lima-n3 chronyd[2504]: Forward time jump detected!
+
+Apr 12 16:28:50 lima-n3 chronyd[39331]: Could not step system clock
+Apr 12 16:29:54 lima-n3 chronyd[39331]: System clock wrong by -3002385021.274820 seconds
+
+!! recovered node by draining and restarting !!
+
 #### Prometheus Node scraping node-exporter or state-metrics
 - curl the endpoint: curl 10.101.88.172:9100/metrics
 success
