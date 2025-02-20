@@ -1,32 +1,19 @@
 # Kinfra
 
-basic kubernetes infrastructure bootstraping
+The purpose of this project is to provision/bootstrap a basic kubernetes infrastructure stack. 
+- IaC/CICD - argocd
+- TLS/ca - cert-manager
+- Storage - rook/ceph
+- Monitoring - prometheus/grafana
+
 
 ## Dependencies
 
 kubernetes cluster  (kubernetes cluster that responds to 'kubectl cluster-info')
+kubernetes cluster w/ network configured
 kubectl             (brew install kubectl)
-helm                (brew install helm)
 python3             (brew install python3)
-~argocd              (brew install argocd)~
 
-## Networking Dependencies
-
-hint: curl 'https://api.ipify.org?format=json' | jq
-
-Registered Domain (squarespace, godaddy, etc)
-- DNS record= Host: @ Type: A TTL: 1h Data: [publically accessible ip address]
-- DNS record= Host: @ Type: CNAME TTL: 1h Data: www.k8s.local
-
-Router
-- DNS record= Host: www.k8s.local Data: [local ip address]
-
-### network troubleshooting tips
-
-netcat listen on a port: nc -l 80
-DNS lookup: nslookup wiredtentacle.com
-MAC address: networksetup -listallhardwareports
-IP address: ipconfig
 
 ## Usage
 
@@ -37,9 +24,12 @@ These commands should be run from the root of this repo, from the admin workstat
 
 3. ArgoCD Login user:admin: kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
 
+Additional Credentials
+Ceph Dashboard
+user: admin
+pwd: kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo
 
 ### tasks
-#### is cert-manager still failing liveness probe?
 
 #### kublet client certificate rotation failing.
 err="part of the existing bootstrap client certificate in /etc/kubernetes/kubelet.conf is expired: 2026-02-18 22:10:15 +0000 UTC" 
@@ -81,13 +71,21 @@ https://github.com/SuperQ/chrony/blob/master/doc/faq.adoc#34-is-chronyd-allowed-
 
 one can consider using the nocerttimecheck option which allows the user to set the number of times that the time can be synced without checking validation and expiration.
 
-#### Prometheus Node scraping node-exporter or state-metrics
-- curl the endpoint: curl 10.101.88.172:9100/metrics
-success
-- why is prometheus not getting data to grafana
 
-- prometheus shows node exporter and state metrics offline
-  "no active targets in this scrape pool"
-  where is scrape pool defined?
+## Networking Dependencies
 
-  There is a selector-label mismatch between serviceMonitor and node-exporter service
+hint: curl 'https://api.ipify.org?format=json' | jq
+
+Registered Domain (squarespace, godaddy, etc)
+- DNS record= Host: @ Type: A TTL: 1h Data: [publically accessible ip address]
+- DNS record= Host: @ Type: CNAME TTL: 1h Data: www.k8s.local
+
+Router
+- DNS record= Host: www.k8s.local Data: [local ip address]
+
+### network troubleshooting tips
+
+netcat listen on a port: nc -l 80
+DNS lookup: nslookup wiredtentacle.com
+MAC address: networksetup -listallhardwareports
+IP address: ipconfig
