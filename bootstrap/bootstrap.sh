@@ -4,6 +4,11 @@ set -e
 CERT_MGR_ENV="stage"
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
+until [ $(kubectl get nodes --no-headers | wc -l) -ge 2 ]; do
+    echo "Waiting for at least 2 nodes to be ready..."
+    sleep 5
+done
+
 kubectl cluster-info
 for namespace in argocd bootstrap cert-manager cert-manager-test ingress-nginx; do
     if kubectl get namespace $namespace > /dev/null 2>&1; then
