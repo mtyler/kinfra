@@ -3,6 +3,8 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
+  ## this name must be 'prometheus' for the kube-state-metrics and node-exporter service monitors to work correctly
+  ## the helm chart does not fascilitate updating the selector labels for these service monitors
   name: prometheus
   namespace: argocd
   finalizers:
