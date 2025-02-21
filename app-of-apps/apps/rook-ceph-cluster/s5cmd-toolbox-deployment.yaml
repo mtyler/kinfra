@@ -60,14 +60,6 @@ spec:
               configMapKeyRef:
                 name: ceph-bucket
                 key: BUCKET_NAME
-              imagePullPolicy: IfNotPresent
-              tty: true
-              securityContext:
-                runAsNonRoot: true
-                runAsUser: 2016
-                runAsGroup: 2016
-                capabilities:
-                  drop: ["ALL"]
           volumeMounts:
             - mountPath: /etc/ceph
               name: ceph-config
