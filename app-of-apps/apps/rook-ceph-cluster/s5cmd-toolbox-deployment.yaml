@@ -36,27 +36,27 @@ spec:
               valueFrom:
               secretKeyRef:
                 name: ceph-bucket
-                key: data.AWS_ACCESS_KEY_ID
+                key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
               secretKeyRef:
                 name: ceph-bucket
-                key: data.AWS_SECRET_ACCESS_KEY
+                key: AWS_SECRET_ACCESS_KEY
             - name: AWS_HOST
               valueFrom:
               configMapKeyRef:
                 name: ceph-bucket
-                key: data.BUCKET_HOST
+                key: BUCKET_HOST
             - name: PORT
               valueFrom:
               configMapKeyRef:
                 name: ceph-bucket
-                key: data.BUCKET_PORT
+                key: BUCKET_PORT
             - name: BUCKET_NAME
               valueFrom:
               configMapKeyRef:
                 name: ceph-bucket
-                key: data.BUCKET_NAME
+                key: BUCKET_NAME
               imagePullPolicy: IfNotPresent
               tty: true
               securityContext:
