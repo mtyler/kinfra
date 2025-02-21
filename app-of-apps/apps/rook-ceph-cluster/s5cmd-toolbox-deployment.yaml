@@ -15,6 +15,12 @@ spec:
       labels:
         app: s5cmd-tools
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 2016
+        runAsGroup: 2016
+        capabilities:
+          drop: ["ALL"]
       serviceAccountName: s5cmd-default
       imagePullSecrets:
         - name: ceph-bucket
@@ -28,12 +34,6 @@ spec:
             - s5cmd --endpoint-url http://$AWS_HOST:$PORT --no-verify-ssl ls
           imagePullPolicy: IfNotPresent
           tty: true
-          securityContext:
-          runAsNonRoot: true
-          runAsUser: 2016
-          runAsGroup: 2016
-          capabilities:
-            drop: ["ALL"]
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
