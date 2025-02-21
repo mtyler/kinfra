@@ -16,6 +16,9 @@ spec:
         app: s5cmd-tools
     spec:
       serviceAccountName: s5cmd-default
+      imagePullSecrets:
+        - name: ceph-bucket
+      restartPolicy: Always
       containers:
         - name: s5cmd-tools
           image: peakcom/s5cmd:v2.3.0
