@@ -19,7 +19,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 2016
         runAsGroup: 2016
-      serviceAccountName: s5cmd-default
+      serviceAccountName: rook-ceph-default
       imagePullSecrets:
         - name: ceph-bucket
       restartPolicy: Always
@@ -61,6 +61,13 @@ spec:
           volumeMounts:
             - mountPath: /etc/ceph
               name: ceph-config
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
           securityContext:
             capabilities:
               drop: ["ALL"]

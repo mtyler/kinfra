@@ -4,6 +4,7 @@ kind: CephCluster
 metadata:
   name: rook-ceph
   namespace: rook-ceph
+provisioner: rook-ceph.rbd.csi.ceph.com
 spec:
   dataDirHostPath: /var/lib/rook
   cephVersion:
@@ -16,8 +17,8 @@ spec:
     count: 1
     allowMultiplePerNode: true
     modules:
-    - name: rook
-      enabled: true
+      - name: rook
+        enabled: true
   dashboard:
     enabled: true
   crashCollector:
@@ -72,6 +73,7 @@ kind: CephBlockPool
 metadata:
   name: builtin-mgr
   namespace: rook-ceph
+provisioner: rook-ceph.rbd.csi.ceph.com
 spec:
   name: .mgr
   replicated:
@@ -83,6 +85,7 @@ kind: CephBlockPool
 metadata:
   name: replicapool
   namespace: rook-ceph
+provisioner: rook-ceph.rbd.csi.ceph.com
 spec:
   failureDomain: osd
   replicated:

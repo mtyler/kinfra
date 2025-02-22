@@ -4,7 +4,6 @@ metadata:
   name: rgw-root
   namespace: rook-ceph # namespace:cluster
 spec:
-  name: .rgw.root
   failureDomain: host
   replicated:
     size: 3
@@ -12,6 +11,7 @@ spec:
   parameters:
     pg_num: "8"
   application: rgw
+provisioner: rook-ceph.ceph.rook.io/bucket
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
@@ -26,6 +26,7 @@ spec:
   parameters:
     pg_num: "8"
   application: rgw
+provisioner: rook-ceph.ceph.rook.io/bucket
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
@@ -39,9 +40,11 @@ spec:
     dataChunks: 2
     codingChunks: 1
   application: rgw
+provisioner: rook-ceph.ceph.rook.io/bucket
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephObjectStore
+provisioner: rook-ceph.ceph.rook.io/bucket
 metadata:
   name: store-a
   namespace: rook-ceph # namespace:cluster
@@ -111,6 +114,7 @@ spec:
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephObjectStore
+provisioner: rook-ceph.ceph.rook.io/bucket
 metadata:
   name: store-b
   namespace: rook-ceph # namespace:cluster
@@ -190,10 +194,12 @@ parameters:
   objectStoreNamespace: rook-ceph
 ---
 apiVersion: objectbucket.io/v1alpha1
+provisioner: rook-ceph.ceph.rook.io/bucket
 kind: ObjectBucketClaim
 metadata:
   name: ceph-bucket
 spec:
+  provisioner: rook-ceph.ceph.rook.io/bucket
   generateBucketName: ceph-bkt
   storageClassName: rook-ceph-bucket
 ###config-map, secret, OBC will part of default if no specific name space mentioned

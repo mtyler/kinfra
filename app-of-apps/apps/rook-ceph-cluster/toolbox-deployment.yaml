@@ -87,6 +87,13 @@ spec:
               # continuously update the mon endpoints if they fail over
               watch_endpoints
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "250m"
+              memory: "512Mi"
+            requests:
+              cpu: "125m"
+              memory: "256Mi"
           tty: true
           securityContext:
             runAsNonRoot: true
