@@ -11,7 +11,6 @@ spec:
   parameters:
     pg_num: "8"
   application: rgw
-provisioner: rook-ceph.ceph.rook.io/bucket
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
@@ -26,7 +25,6 @@ spec:
   parameters:
     pg_num: "8"
   application: rgw
-provisioner: rook-ceph.ceph.rook.io/bucket
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
@@ -40,11 +38,9 @@ spec:
     dataChunks: 2
     codingChunks: 1
   application: rgw
-provisioner: rook-ceph.ceph.rook.io/bucket
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephObjectStore
-provisioner: rook-ceph.ceph.rook.io/bucket
 metadata:
   name: store-a
   namespace: rook-ceph # namespace:cluster
@@ -114,7 +110,6 @@ spec:
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephObjectStore
-provisioner: rook-ceph.ceph.rook.io/bucket
 metadata:
   name: store-b
   namespace: rook-ceph # namespace:cluster

@@ -4,7 +4,6 @@ kind: CephCluster
 metadata:
   name: rook-ceph
   namespace: rook-ceph
-provisioner: rook-ceph.rbd.csi.ceph.com
 spec:
   dataDirHostPath: /var/lib/rook
   cephVersion:
@@ -52,7 +51,6 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: rook-ceph-block
-provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
   clusterID: rook-ceph
   pool: replicapool
@@ -73,7 +71,6 @@ kind: CephBlockPool
 metadata:
   name: builtin-mgr
   namespace: rook-ceph
-provisioner: rook-ceph.rbd.csi.ceph.com
 spec:
   name: .mgr
   replicated:
@@ -85,7 +82,6 @@ kind: CephBlockPool
 metadata:
   name: replicapool
   namespace: rook-ceph
-provisioner: rook-ceph.rbd.csi.ceph.com
 spec:
   failureDomain: osd
   replicated:
