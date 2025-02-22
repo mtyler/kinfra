@@ -19,8 +19,6 @@ spec:
         runAsNonRoot: true
         runAsUser: 2016
         runAsGroup: 2016
-        capabilities:
-          drop: ["ALL"]
       serviceAccountName: s5cmd-default
       imagePullSecrets:
         - name: ceph-bucket
@@ -37,32 +35,35 @@ spec:
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
-              secretKeyRef:
-                name: ceph-bucket
-                key: AWS_ACCESS_KEY_ID
+                secretKeyRef:
+                  name: ceph-bucket
+                  key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
-              secretKeyRef:
-                name: ceph-bucket
-                key: AWS_SECRET_ACCESS_KEY
+                secretKeyRef:
+                  name: ceph-bucket
+                  key: AWS_SECRET_ACCESS_KEY
             - name: AWS_HOST
               valueFrom:
-              configMapKeyRef:
-                name: ceph-bucket
-                key: BUCKET_HOST
+                configMapKeyRef:
+                  name: ceph-bucket
+                  key: BUCKET_HOST
             - name: PORT
               valueFrom:
-              configMapKeyRef:
-                name: ceph-bucket
-                key: BUCKET_PORT
+                configMapKeyRef:
+                  name: ceph-bucket
+                  key: BUCKET_PORT
             - name: BUCKET_NAME
               valueFrom:
-              configMapKeyRef:
-                name: ceph-bucket
-                key: BUCKET_NAME
+                configMapKeyRef:
+                  name: ceph-bucket
+                  key: BUCKET_NAME
           volumeMounts:
             - mountPath: /etc/ceph
               name: ceph-config
+          securityContext:
+            capabilities:
+              drop: ["ALL"]
       volumes:
         - name: ceph-config
           emptyDir: {}
