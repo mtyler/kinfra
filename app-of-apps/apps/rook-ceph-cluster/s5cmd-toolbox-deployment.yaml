@@ -31,9 +31,9 @@ spec:
             - /bin/bash
             - -c
             - echo $AWS_HOST
-            # - echo $AWS_ACCESS_KEY_ID
             - sleep 9000
-            -  #s5cmd --endpoint-url http://$AWS_HOST:$PORT --no-verify-ssl ls
+            # - echo $AWS_ACCESS_KEY_ID
+          #            -  s5cmd --endpoint-url http://$AWS_HOST:$PORT --no-verify-ssl ls
           imagePullPolicy: IfNotPresent
           tty: true
           env:
