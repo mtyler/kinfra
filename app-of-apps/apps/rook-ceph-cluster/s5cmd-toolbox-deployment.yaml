@@ -25,7 +25,8 @@ spec:
       restartPolicy: Always
       containers:
         - name: s5cmd-tools
-          image: peakcom/s5cmd:v2.3.0
+          #image: peakcom/s5cmd:v2.3.0
+          image: ubuntu:24.04:latest
           command:
             - /bin/bash
             - -c
