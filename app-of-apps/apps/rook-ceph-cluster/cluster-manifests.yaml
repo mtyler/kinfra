@@ -66,7 +66,6 @@ parameters:
   csi.storage.k8s.io/fstype: ext4
 reclaimPolicy: Delete
 allowVolumeExpansion: true
-
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
