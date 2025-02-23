@@ -28,12 +28,15 @@ spec:
           #image: peakcom/s5cmd:v2.3.0
           image: ubuntu:24.04
           command:
-            - /bin/bash
-            - -c
-            - echo $AWS_HOST
-            - sleep 9000
-            # - echo $AWS_ACCESS_KEY_ID
-          #            -  s5cmd --endpoint-url http://$AWS_HOST:$PORT --no-verify-ssl ls
+            - "sleep"
+            - "9000"
+          ##          command:
+          ##            - /bin/bash
+          ##            - -c
+          ##            - echo $AWS_HOST
+          ##            - sleep 9000
+          ##            # - echo $AWS_ACCESS_KEY_ID
+          ##          #            -  s5cmd --endpoint-url http://$AWS_HOST:$PORT --no-verify-ssl ls
           imagePullPolicy: IfNotPresent
           tty: true
           env:
