@@ -189,12 +189,10 @@ parameters:
   objectStoreNamespace: rook-ceph
 ---
 apiVersion: objectbucket.io/v1alpha1
-provisioner: rook-ceph.ceph.rook.io/bucket
 kind: ObjectBucketClaim
 metadata:
   name: ceph-bucket
 spec:
-  provisioner: rook-ceph.ceph.rook.io/bucket
   generateBucketName: ceph-bkt
   storageClassName: rook-ceph-bucket
 ###config-map, secret, OBC will part of default if no specific name space mentioned
