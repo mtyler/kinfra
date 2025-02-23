@@ -72,9 +72,9 @@ spec:
             requests:
               memory: "256Mi"
               cpu: "250m"
-          securityContext:
-            capabilities:
-              drop: ["ALL"]
+      #          securityContext:
+      #            capabilities:
+      #              drop: ["ALL"]
       volumes:
         - name: ceph-config
           emptyDir: {}
