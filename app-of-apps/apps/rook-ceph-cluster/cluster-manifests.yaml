@@ -48,7 +48,7 @@ spec:
       mon_data_avail_warn: "10"
 ---
 apiVersion: storage.k8s.io/v1
-kind: StorageClass
+provisioner: rook-ceph.rbd.csi.ceph.com
 metadata:
   name: rook-ceph-block
 parameters:
@@ -65,6 +65,7 @@ parameters:
   csi.storage.k8s.io/fstype: ext4
 reclaimPolicy: Delete
 allowVolumeExpansion: true
+
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
