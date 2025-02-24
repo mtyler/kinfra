@@ -25,18 +25,15 @@ spec:
       restartPolicy: Always
       containers:
         - name: s5cmd-tools
-          #image: peakcom/s5cmd:v2.3.0
-          image: ubuntu:24.04
+          image: peakcom/s5cmd:v2.3.0
           command:
-            - "sleep"
-            - "9000"
-          ##          command:
-          ##            - /bin/bash
-          ##            - -c
-          ##            - echo $AWS_HOST
-          ##            - sleep 9000
-          ##            # - echo $AWS_ACCESS_KEY_ID
-          ##          #            -  s5cmd --endpoint-url http://$AWS_HOST:$PORT --no-verify-ssl ls
+            - /bin/bash
+            - -c
+            - |
+              while true; do
+                echo "sleepy time..."
+                sleep 1000
+              done
           imagePullPolicy: IfNotPresent
           tty: true
           env:
