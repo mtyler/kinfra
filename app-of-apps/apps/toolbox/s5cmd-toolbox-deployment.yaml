@@ -29,12 +29,7 @@ spec:
           command:
             - /bin/sh
             - -c
-            - |
-              cat <<EOF > /root/.aws/credentials
-              [default]
-              aws_access_key_id=${AWS_ACCESS_KEY_ID}
-              aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}
-              EOF
+            - s5cmd --endpoint-url http://$(AWS_HOST):$(PORT) --no-verify-ssl ls s3://$(BUCKET_NAME)
           imagePullPolicy: IfNotPresent
           tty: true
           env:
