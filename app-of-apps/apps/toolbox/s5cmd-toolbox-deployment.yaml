@@ -27,17 +27,14 @@ spec:
         - name: s5cmd-tools
           image: peakcom/s5cmd:v2.3.0
           command:
-            - /bin/bash
+            - /bin/sh
             - -c
             - |
-              sleepytime() {
-                while true; do
-                  echo "sleepy time..."
-                  sleep 1000
-                done
-              }
-
-              sleepytime
+              cat <<EOF > /root/.aws/credentials
+              [default]
+              aws_access_key_id=${AWS_ACCESS_KEY_ID}
+              aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}
+              EOF
           imagePullPolicy: IfNotPresent
           tty: true
           env:
