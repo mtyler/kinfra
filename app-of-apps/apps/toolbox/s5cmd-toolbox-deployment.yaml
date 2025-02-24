@@ -27,8 +27,6 @@ spec:
         - name: s5cmd-tools
           image: peakcom/s5cmd:v2.3.0
           command:
-            - /bin/sh
-            - -c
             - s5cmd --endpoint-url http://$(AWS_HOST):$(PORT) --no-verify-ssl ls s3://$(BUCKET_NAME)
           imagePullPolicy: IfNotPresent
           tty: true
