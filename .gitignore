@@ -10,6 +10,9 @@ logs/
 *.log
 *.out
 
+# environment files
+/bootstrap/envs/s5cmd-credentials
+
 # General
 .DS_Store
 .AppleDouble

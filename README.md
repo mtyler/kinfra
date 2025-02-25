@@ -97,3 +97,6 @@ chronyc -a 'burst 4/4'
 200 OK
 # chronyc -a makestep
 200 OK
+
+added hostResolver.enabled true to the klima template...  This will configure DNS
+... crossing fingers...
