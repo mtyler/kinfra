@@ -89,3 +89,11 @@ netcat listen on a port: nc -l 80
 DNS lookup: nslookup wiredtentacle.com
 MAC address: networksetup -listallhardwareports
 IP address: ipconfig
+
+
+
+chronyc -a 'burst 4/4'
+200 OK
+200 OK
+# chronyc -a makestep
+200 OK

@@ -23,6 +23,24 @@ spec:
       imagePullSecrets:
         - name: ceph-bucket
       restartPolicy: Always
+      initContainers:
+        - name: check-secret-configmap
+          image: busybox
+          command:
+            - /bin/sh
+            - -c
+            - |
+              until [ -f /etc/secrets/AWS_ACCESS_KEY_ID ] && [ -f /etc/secrets/AWS_SECRET_ACCESS_KEY ] && [ -f /etc/config/BUCKET_HOST ] && [ -f /etc/config/BUCKET_PORT ] && [ -f /etc/config/BUCKET_NAME ]; do
+                echo "Waiting for secret and config map to be available..."
+                sleep 5
+              done
+          volumeMounts:
+            - name: ceph-bucket-secret
+              mountPath: /etc/secrets
+              readOnly: true
+            - name: ceph-bucket-config
+              mountPath: /etc/config
+              readOnly: true
       containers:
         - name: s5cmd-tools
           image: peakcom/s5cmd:v2.3.0
