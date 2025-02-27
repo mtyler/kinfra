@@ -83,6 +83,24 @@ Registered Domain (squarespace, godaddy, etc)
 Router
 - DNS record= Host: www.k8s.local Data: [local ip address]
 
+## Storage
+
+verify object storage
+1. install s5cmd: brew install s5cmd
+2. get credentials: ./bootstrap/hack/s5cmd-credentials.py
+3. source credentials: . ./bootstrap/envs/s5cmd-credentials
+2. create ~/.aws/credentials
+cat > ~/.aws/credentials << EOF
+[default]
+aws_access_key_id = ${AWS_ACCESS_KEY_ID}
+aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
+EOF
+4. port forward: kubectl port-forward -n rook-ceph svc/rook-ceph-rgw-store-a 8080:8
+kubectl port-forward -n rook-ceph svc/$AWS_HOST 8080:$PORT
+5. upload: s5cmd --endpoint-url http://localhost:8080 cp README.md s3://ceph-bkt-c820ae58-173f-440f-b8f9-7add09582e63
+s5cmd --endpoint-url http://localhost:8080 cp README.md s3://$BUCKET_NAME
+6. get contents:  s5cmd --endpoint-url http://localhost:8080 ls s3://ceph-bkt-c820ae58-173f-440f-b8f9-7add09582e63
+
 ### network troubleshooting tips
 
 netcat listen on a port: nc -l 80
@@ -90,6 +108,8 @@ DNS lookup: nslookup wiredtentacle.com
 MAC address: networksetup -listallhardwareports
 IP address: ipconfig
 
+#### task #0: node stability
+Node clocks require heavy monitoring and mitigation
 
 
 chronyc -a 'burst 4/4'
@@ -100,3 +120,8 @@ chronyc -a 'burst 4/4'
 
 added hostResolver.enabled true to the klima template...  This will configure DNS
 ... crossing fingers...
+
+
+
+#### task #1: access and create object storage
+Use the s5cmd to create a bucket manually, then automate it

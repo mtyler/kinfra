@@ -8,16 +8,20 @@ import subprocess
 ##export AWS_ACCESS_KEY_ID=$(kubectl -n default get secret ceph-bucket -o jsonpath='{.data.AWS_ACCESS_KEY_ID}' | base64 --decode)
 ##export AWS_SECRET_ACCESS_KEY=$(kubectl -n default get secret ceph-bucket -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}' | base64 --decode)
 
+
+## get on the toolbox
+## kubectl -n rook-ceph exec -it deployments/rook-ceph-tools-operator-image -- bash
+
 USER_HOME_DIR = os.path.expanduser("~")
 CWD = f"{os.path.dirname(os.path.abspath(__file__))}/"
 
 def create_credential_file(key_id, secret_key, host, port, bucket_name):
     with open(f'{CWD}/../envs/s5cmd-credentials', 'w') as f:
-        f.write(f'export AWS_ACCESS_KEY_ID = {key_id}\n')
-        f.write(f'export AWS_SECRET_ACCESS_KEY = {secret_key}\n')
-        f.write(f'export AWS_HOST = {host}\n')
-        f.write(f'export PORT = {port}\n')
-        f.write(f'export BUCKET_NAME = {bucket_name}\n')
+        f.write(f'export AWS_ACCESS_KEY_ID={key_id}\n')
+        f.write(f'export AWS_SECRET_ACCESS_KEY={secret_key}\n')
+        f.write(f'export AWS_HOST={host}\n')
+        f.write(f'export PORT={port}\n')
+        f.write(f'export BUCKET_NAME={bucket_name}\n')
 
 def get_aws_access_key_id():
     cmd = "kubectl -n rook-ceph get secret ceph-bucket -o jsonpath='{.data.AWS_ACCESS_KEY_ID}' | base64 --decode"
