@@ -14,7 +14,7 @@ spec:
     namespace: falco-security
   project: default
   source:
-    path: falcosecurity
+    path: falco
     chart: falco
     repoURL: https://falcosecurity.github.io/charts
     targetRevision: v0.40.0
