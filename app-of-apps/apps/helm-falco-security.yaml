@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "10"
   name: falco-security
   namespace: argocd
   finalizers:
@@ -17,7 +17,7 @@ spec:
     path: falcosecurity
     chart: falco
     repoURL: https://falcosecurity.github.io/charts
-    targetRevision: v0.26.1
+    targetRevision: v0.40.0
     helm:
       releaseName: falco
       parameters:
