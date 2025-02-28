@@ -3,18 +3,18 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
-  name: toolbox
+    argocd.argoproj.io/sync-wave: "1"
+  name: cluster-issuer
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: rook-ceph
+    namespace: cert-manager
   project: default
   source:
-    path: app-of-apps/apps/toolbox
+    path: app-of-infra/infra/cluster-issuer
     repoURL: "https://github.com/mtyler/kinfra"
     targetRevision: HEAD
   syncPolicy:

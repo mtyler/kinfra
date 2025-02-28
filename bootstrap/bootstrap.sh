@@ -36,7 +36,7 @@ echo "\\nArgoCD credentials:"
 kubectl -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
 echo "\\n"
 ## apply baseline applications
-kubectl apply -f ./bootstrap/argocd/apps.yaml
+kubectl apply -f ./bootstrap/argocd/bootstrap.yaml
 
 ## possible options for exposing the service
 #kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
