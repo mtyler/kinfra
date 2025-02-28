@@ -111,17 +111,8 @@ IP address: ipconfig
 #### task #0: node stability
 Node clocks require heavy monitoring and mitigation
 
-
-chronyc -a 'burst 4/4'
-200 OK
-200 OK
-# chronyc -a makestep
-200 OK
-
-added hostResolver.enabled true to the klima template...  This will configure DNS
-... crossing fingers...
-
-
-
-#### task #1: access and create object storage
-Use the s5cmd to create a bucket manually, then automate it
+moved back to systemd-timesyncd
+some recommended config
+   [Time]
+   NTPPollInterval=60  # Check time servers every 60 seconds when online
+   NTPFallbackInterval=1800 # Adjust internal clock every 30 minutes when offline
