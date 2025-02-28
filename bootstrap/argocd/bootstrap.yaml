@@ -7,7 +7,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    path: app-of-apps/apps
+    path: app-of-infra/infra
     repoURL: https://github.com/mtyler/kinfra.git
     targetRevision: HEAD
     directory:
