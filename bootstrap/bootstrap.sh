@@ -10,7 +10,7 @@ until [ $(kubectl get nodes --no-headers | wc -l) -ge 2 ]; do
 done
 
 kubectl cluster-info
-for namespace in argocd bootstrap cert-manager cert-manager-test ingress-nginx; do
+for namespace in argocd cert-manager cert-manager-test; do
     if kubectl get namespace $namespace > /dev/null 2>&1; then
         read -p "Namespace '$namespace' exists. Do you want to delete it? (y/n): " confirm
         if [[ $confirm == "y" ]]; then
