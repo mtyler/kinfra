@@ -16,8 +16,8 @@ spec:
   source:
     path: nginx-gateway-fabric
     chart: nginx-gateway-fabric
-    repoURL: oci://ghcr.io/nginxinc/charts/
-    targetRevision: v1.6.1
+    repoURL: oci://ghcr.io/nginxinc/charts/nginx-gateway-fabric
+    targetRevision: v1.5.1
     helm:
       releaseName: ngf
   syncPolicy:
