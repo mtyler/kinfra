@@ -1,0 +1,3 @@
+#!/bin/sh
+# Download the Gateway API CRDs
+wget https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml
