@@ -9,7 +9,7 @@ spec:
   source:
     path: app-of-infra/infra
     repoURL: https://github.com/mtyler/kinfra.git
-    targetRevision: HEAD
+    targetRevision: vagrant
     directory:
       recurse: false
       exclude: bootstrap
