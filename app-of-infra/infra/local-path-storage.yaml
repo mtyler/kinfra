@@ -16,7 +16,7 @@ spec:
   source:
     path: app-of-infra/infra/local-path-storage
     repoURL: "https://github.com/mtyler/kinfra"
-    targetRevision: vagrant
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
