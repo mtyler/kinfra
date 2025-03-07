@@ -14,12 +14,12 @@ spec:
     namespace: gateway
   project: default
   source:
-    path: nginx-gateway-fabric
-    chart: nginx-gateway-fabric
-    repoURL: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
-    targetRevision: v1.5.1
+    path: gloo
+    chart: gloo
+    repoURL: https://storage.googleapis.com/solo-public-helm
+    targetRevision: v1.18.12
     helm:
-      releaseName: ngf
+      releaseName: gloo
   syncPolicy:
     automated:
       prune: true
