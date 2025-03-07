@@ -25,7 +25,8 @@ spec:
         - name: "grafana.persistence.enabled"
           value: "true"
         - name: "grafana.persistence.storageClassName"
-          value: "rook-ceph-block"
+          ##  value: "rook-ceph-block"
+          value: "local-path"
         #### TODO removed until we can pass slack creds securely
         ##        - name: "alertmanager.config.receivers[0].name"
         ##          value: "slack"
