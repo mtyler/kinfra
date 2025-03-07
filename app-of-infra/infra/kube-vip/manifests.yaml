@@ -78,7 +78,7 @@ spec:
             - name: port
               value: "6443"
             - name: vip_interface
-              value: lima0
+              value: eth0
             - name: vip_cidr
               value: "32"
             - name: cp_enable
@@ -99,7 +99,7 @@ spec:
               value: "1"
             ## TODO: set IP properly
             - name: address
-              value: 192.168.105.100
+              value: 10.0.0.11
           image: ghcr.io/kube-vip/kube-vip:v0.8.9
           imagePullPolicy: Always
           name: kube-vip
